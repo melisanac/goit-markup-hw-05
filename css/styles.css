@@ -414,6 +414,7 @@ h2 {
   padding: 8px 16px;
   width: 260px;
   height: 40px;
+  outline: none;
 }
 
 input::placeholder {
@@ -443,6 +444,11 @@ input::placeholder {
 }
 
 /* Modal yapısı */
+.backdrop {
+  display: none;
+  transition: display 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .modal {
   position: fixed;
   background-color: rgba(46, 47, 66, 0.4);
@@ -467,7 +473,18 @@ input::placeholder {
     0 2px 1px 0 rgba(0, 0, 0, 0.2);
   background: #fcfcfc;
   padding: 24px 24px;
+
+  /* visibility: hidden;
+  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); */
 }
+
+.backdrop.is-open {
+  display: flex;
+}
+
+/* .backdrop.is-open .modal {
+  opacity: 1;
+} */
 
 .close-icon-container {
   display: flex;
@@ -550,44 +567,61 @@ textarea::placeholder {
   resize: vertical;
 }
 
-.checkbox {
+/* CHECKBOX */
+.custom-checkbox {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+  position: relative;
+  padding-left: 10px;
+  height: 16px;
 }
 
 input[type='checkbox'] {
-  opacity: 1;
-}
-
-.accept-box {
-  position: relative;
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  border: 1px solid rgba(46, 47, 66, 0.4);
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.accept-box:active {
-  background-color: #404bbf;
-}
-
-.check-mark {
   position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  z-index: 2;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+  border-radius: 2px;
+}
+
+/* Eğitmene Not: Tik ikonunu icomoon kütüphanesinden aldım figma dosyasında sonradan gördüm ancak ikonu değiştirmedim */
+.tik-icon {
+  position: absolute;
+  opacity: 0;
+  width: 10px;
+  height: 8px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  opacity: 0;
+  cursor: pointer;
+  fill: #f4f4fd;
+  z-index: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input[type='checkbox']:checked.check-mark {
+input[type='checkbox']:checked + .checkmark {
+  background-color: #404bbf;
+}
+
+input[type='checkbox']:checked ~ .checkmark .tik-icon {
   opacity: 1;
+}
+
+.policy-text {
+  margin-left: 16px;
 }
 
 .policy-link {
