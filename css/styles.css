@@ -397,7 +397,6 @@ h2 {
 .subscribe-form {
   display: flex;
   flex-direction: column;
-  /* margin-left: 200px; */
 }
 
 .subscribe {
@@ -407,7 +406,7 @@ h2 {
   margin-top: 16px;
 }
 
-input {
+.subscribe-input {
   background-color: #2e2f42;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   border: 1px solid #fff;
@@ -460,18 +459,44 @@ input::placeholder {
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
   border-radius: 4px;
   width: 408px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12),
     0 2px 1px 0 rgba(0, 0, 0, 0.2);
   background: #fcfcfc;
-  padding: 72px 24px 24px;
+  padding: 24px 24px;
+}
+
+.close-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.close-box {
+  position: relative;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: #e7e9fc;
+}
+
+.close-icon {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modal-form-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-top: 24px;
   margin-bottom: 8px;
 }
 
@@ -490,10 +515,30 @@ input::placeholder {
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 38px;
+  width: 100%;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-form-input:focus-within {
   border-color: #4d5ae5;
+}
+
+.form-icons-container:focus-within .form-icon {
+  fill: #4d5ae5;
+}
+
+.form-icons-container {
+  position: relative;
+}
+
+.form-icon {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 textarea::placeholder {
@@ -506,9 +551,43 @@ textarea::placeholder {
 }
 
 .checkbox {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
+}
+
+input[type='checkbox'] {
+  opacity: 1;
+}
+
+.accept-box {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
   margin-right: 8px;
+  cursor: pointer;
+}
+
+.accept-box:active {
+  background-color: #404bbf;
+}
+
+.check-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type='checkbox']:checked.check-mark {
+  opacity: 1;
 }
 
 .policy-link {
