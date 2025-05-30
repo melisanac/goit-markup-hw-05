@@ -444,12 +444,13 @@ input::placeholder {
 }
 
 /* Modal yapısı */
-.backdrop {
-  display: none;
-  transition: display 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+.backdrop.is-open {
+  display: block;
+  pointer-events: auto;
 }
 
-.modal {
+.backdrop {
   position: fixed;
   background-color: rgba(46, 47, 66, 0.4);
   top: 0;
@@ -462,7 +463,20 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* 
+  .is-open uygulaması
+  
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); */
 }
+
+/* .backdrop.is-open {
+  opacity: 1;
+  display: block;
+  pointer-events: auto;
+} */
 
 .modal-content {
   display: flex;
@@ -473,18 +487,7 @@ input::placeholder {
     0 2px 1px 0 rgba(0, 0, 0, 0.2);
   background: #fcfcfc;
   padding: 24px 24px;
-
-  /* visibility: hidden;
-  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); */
 }
-
-.backdrop.is-open {
-  display: flex;
-}
-
-/* .backdrop.is-open .modal {
-  opacity: 1;
-} */
 
 .close-icon-container {
   display: flex;
